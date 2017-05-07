@@ -1,0 +1,10 @@
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/KafkaUtilsTest.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/StringKeyValueSchemeTest.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/TestUtils.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/TridentKafkaTest.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/DynamicBrokersReaderTest.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/KafkaTestBroker.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/bolt/KafkaBoltTest.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/KafkaErrorTest.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/ZkCoordinatorTest.java
+/Users/jue/intellatrade/intellatrade/src/test/storm/kafka/TridentKafkaTopology.java
