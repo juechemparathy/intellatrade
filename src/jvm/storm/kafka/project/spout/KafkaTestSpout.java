@@ -55,7 +55,7 @@ public class KafkaTestSpout extends BaseRichSpout {
 
   public void nextTuple() {
     Utils.sleep(100);
-    final String[] words = new String[] {"nathan", "mike", "jackson", "golda", "bertels"};
+    final String[] words = new String[] {"1.3", "1.2", "1.0", "0.9", "1.4"};
     final Random rand = new Random();
     final String word = words[rand.nextInt(words.length)];
     _collector.emit(new Values(word));

@@ -30,8 +30,6 @@ public class AnalyzerBolt extends BaseRichBolt {
     public void execute(Tuple tuple) {
         String pairInfo = tuple.getString(0);
 
-        pairInfo = "1.3"; // assuming realtime data coming in as 1.3 for all pairs to test.
-
         System.out.println("Intellatrade: AnalyzerBolt input tuple: " + pairInfo);
         // Lookup recommendation data
         try {
@@ -45,7 +43,6 @@ public class AnalyzerBolt extends BaseRichBolt {
         }
 
         String userPick = "GBP USD";
-
         if(DatabaseHelper.getRecos_buy().get(userPick) != null
                 && Integer.parseInt(pairInfo) >= Integer.parseInt(DatabaseHelper.getRecos_buy().get(userPick).getPrice())) {
             // place order
