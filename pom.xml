@@ -26,8 +26,8 @@
     </parent>
 
     <packaging>jar</packaging>
-    <artifactId>storm-kafka</artifactId>
-    <name>storm-kafka</name>
+    <artifactId>intellatrade</artifactId>
+    <name>intellatrade</name>
     <description>Storm Spouts for Apache Kafka</description>
     <build>
         <plugins>

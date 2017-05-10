@@ -5,4 +5,5 @@ package storm.kafka.project.util;
  */
 public class AccoutInfoFetcher {
     // Query mysql and fetch user information
+
 }
