@@ -6,7 +6,14 @@ import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Map;
 
 /**
@@ -25,12 +32,44 @@ public class TransactionBolt extends BaseRichBolt {
         System.out.println("Intellatrade: TransactionBolt input tuple: " + tuple.getString(0));
         // Extract userinfo and transaction info
         // execute the transaction Asynchronously
-//      _collector.emit(tuple, new Values(tuple.getString(0) + "!!!"));
+//      _collector.emit(tuple, new Values(tuple.getString(0)));
+
+        // Deal Request
+
+        // http://ec2-52-53-232-188.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?product=GBP/USD&buysell=B&amount=10000&rate=1.4
+        String url = "http://ec2-54-193-121-31.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?userName=Reshma&product=GBP/USD&buysell=B&amount=10000&rate=1.4";
+        try {
+            makeTransaction(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         _collector.ack(tuple);
     }
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         declarer.declare(new Fields("traderesult"));
+    }
+
+
+    private void makeTransaction(String url) throws IOException {
+        HttpClient client = HttpClientBuilder.create().build();
+        HttpGet request = new HttpGet(url);
+
+// add request header
+        request.addHeader("User-Agent", "Storm Transaction");
+        HttpResponse response = client.execute(request);
+
+        System.out.println("Response Code : "
+                + response.getStatusLine().getStatusCode());
+
+        BufferedReader rd = new BufferedReader(
+                new InputStreamReader(response.getEntity().getContent()));
+
+        StringBuffer result = new StringBuffer();
+        String line = "";
+        while ((line = rd.readLine()) != null) {
+            result.append(line);
+        }
     }
 }

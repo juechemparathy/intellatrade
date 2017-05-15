@@ -36,6 +36,7 @@ storm/kafka/DynamicPartitionConnections$ConnectionInfo.class
 storm/kafka/KafkaSpout$1.class
 storm/kafka/FailedFetchException.class
 storm/kafka/UpdateOffsetException.class
+storm/kafka/project/util/DatabaseHelper$RecommendationData.class
 storm/kafka/project/util/TupleHelpers.class
 storm/kafka/trident/MaxMetric.class
 storm/kafka/project/bolt/TransactionBolt.class
@@ -43,6 +44,7 @@ storm/kafka/KafkaError.class
 storm/kafka/KeyValueScheme.class
 storm/kafka/project/AutoTradeTopology.class
 storm/kafka/SpoutConfig.class
+storm/kafka/project/util/DatabaseHelper.class
 storm/kafka/project/util/KafkaMessageParser.class
 storm/kafka/trident/TransactionalTridentKafkaSpout.class
 storm/kafka/bolt/KafkaBolt.class

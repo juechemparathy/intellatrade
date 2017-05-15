@@ -36,13 +36,20 @@ public class DatabaseHelper {
         return currentDate;
     }
 
-    public static  void refresh() throws SQLException {
+    public static void main(String args[]) {
+        try {
+            DatabaseHelper.refresh();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static void refresh() throws SQLException {
         Connection dbConnection = null;
         Statement statement = null;
 
         String selectTableSQL = "SELECT * from daily_recommendations WHERE datetime >= CURDATE()\n" +
-                "  AND datetime < CURDATE() + INTERVAL 1 DAY";
+                "  AND datetime < CURDATE() + INTERVAL 2 DAY";
 
         try {
             dbConnection = getDBConnection();
@@ -109,9 +116,14 @@ public class DatabaseHelper {
         }
     }
 
+    private static Connection dbConnection = null;
+
+
     private static Connection getDBConnection() {
 
-        Connection dbConnection = null;
+        if(dbConnection != null) {
+            return dbConnection;
+        }
 
         try {
 

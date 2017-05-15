@@ -42,10 +42,10 @@ public class AutoTradeTopology {
     SpoutConfig spoutConfig = new SpoutConfig(hosts, topicName, "/"+topicName, topicName);
     spoutConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
 
-    builder.setSpout("pairinfo", new KafkaSpout(spoutConfig), 10);
-//    builder.setSpout("pairinfo", new KafkaTestSpout(), 10);
-    builder.setBolt("transaction", new AnalyzerBolt(), 3).shuffleGrouping("pairinfo");
-    builder.setBolt("traderesult", new TransactionBolt(), 2).shuffleGrouping("transaction");
+//    builder.setSpout("pairinfo", new KafkaSpout(spoutConfig), 10);
+    builder.setSpout("pairinfo", new KafkaTestSpout(), 10);
+    builder.setBolt("analyser", new AnalyzerBolt(), 3).shuffleGrouping("pairinfo");
+    builder.setBolt("transaction", new TransactionBolt(), 2).shuffleGrouping("analyser");
 
     Config conf = new Config();
     conf.setDebug(true);

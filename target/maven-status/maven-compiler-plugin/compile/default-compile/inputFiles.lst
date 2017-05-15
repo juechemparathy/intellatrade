@@ -50,6 +50,7 @@
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/trident/mapper/FieldNameBasedTupleToKafkaMapper.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/StaticPartitionConnections.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/project/AutoTradeTopology.java
+/Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/project/util/DatabaseHelper.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/bolt/selector/KafkaTopicSelector.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/KafkaError.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/KafkaSpout.java

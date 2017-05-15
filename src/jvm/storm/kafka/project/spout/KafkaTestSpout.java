@@ -58,6 +58,7 @@ public class KafkaTestSpout extends BaseRichSpout {
     final String[] words = new String[] {"1.3", "1.2", "1.0", "0.9", "1.4"};
     final Random rand = new Random();
     final String word = words[rand.nextInt(words.length)];
+    System.out.println("Log- " + "spitting tuples");
     _collector.emit(new Values(word));
   }
 
