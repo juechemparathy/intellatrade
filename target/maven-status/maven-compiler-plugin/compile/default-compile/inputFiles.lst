@@ -4,6 +4,7 @@
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/bolt/selector/DefaultTopicSelector.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/bolt/mapper/FieldNameBasedTupleToKafkaMapper.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/bolt/mapper/TupleToKafkaMapper.java
+/Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/project/util/RealtimeClient.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/trident/selector/DefaultTopicSelector.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/trident/StaticBrokerReader.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/FailedFetchException.java
@@ -42,6 +43,7 @@
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/KeyValueSchemeAsMultiScheme.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/trident/mapper/TridentTupleToKafkaMapper.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/StringKeyValueScheme.java
+/Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/project/util/RealtimeBot.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/ZkState.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/KafkaConfig.java
 /Users/jue/intellatrade/intellatrade/src/jvm/storm/kafka/StaticHosts.java

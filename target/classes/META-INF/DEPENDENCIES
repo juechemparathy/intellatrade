@@ -21,14 +21,42 @@ From: 'an unknown organization'
     License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
   - zookeeper  org.apache.zookeeper:zookeeper:pom:3.4.6
 
+  - Tyrus Client (http://tyrus.java.net/tyrus-client) org.glassfish.tyrus:tyrus-client:jar:1.1
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (http://glassfish.java.net/public/CDDL+GPL_1_1.html)
+  - Tyrus Grizzly Container (http://tyrus.java.net/tyrus-containers-project/tyrus-container-grizzly) org.glassfish.tyrus:tyrus-container-grizzly:jar:1.1
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (http://glassfish.java.net/public/CDDL+GPL_1_1.html)
+  - Tyrus Core (http://tyrus.java.net/tyrus-core) org.glassfish.tyrus:tyrus-core:jar:1.1
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (http://glassfish.java.net/public/CDDL+GPL_1_1.html)
+  - Tyrus Container SPI (http://tyrus.java.net/tyrus-spi) org.glassfish.tyrus:tyrus-spi:jar:1.1
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (http://glassfish.java.net/public/CDDL+GPL_1_1.html)
+  - Tyrus WebSocket Core (http://tyrus.java.net/tyrus-protocol/tyrus-websocket-core) org.glassfish.tyrus:tyrus-websocket-core:jar:1.1
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (http://glassfish.java.net/public/CDDL+GPL_1_1.html)
 
 From: 'LAMP/EPFL' (http://lamp.epfl.ch/)
   - Scala Library (http://www.scala-lang.org/) org.scala-lang:scala-library:jar:2.9.2
     License: BSD-like  (http://www.scala-lang.org/downloads/license.html)
 
+From: 'Oracle' (http://www.oracle.com)
+  - JSR 353 (JSON Processing) API (http://json-processing-spec.java.net) javax.json:javax.json-api:bundle:1.0
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (https://glassfish.java.net/public/CDDL+GPL_1_1.html)
+  - WebSocket server API (http://websocket-spec.java.net) javax.websocket:javax.websocket-api:bundle:1.0
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (https://glassfish.java.net/public/CDDL+GPL_1_1.html)
+  - WebSocket client API (http://websocket-spec.java.net) javax.websocket:javax.websocket-client-api:jar:1.0
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (https://glassfish.java.net/public/CDDL+GPL_1_1.html)
+  - JSR 353 (JSON Processing) Default Provider (http://jsonp.java.net) org.glassfish:javax.json:bundle:1.0.1
+    License: Dual license consisting of the CDDL v1.1 and GPL v2  (https://glassfish.java.net/public/CDDL+GPL_1_1.html)
+
 From: 'Oracle Corporation' (http://www.oracle.com)
   - MySQL Connector/J (http://dev.mysql.com/doc/connector-j/en/) mysql:mysql-connector-java:jar:5.1.39
     License: The GNU General Public License, Version 2  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+  - grizzly-framework (http://grizzly.java.net/grizzly-framework) org.glassfish.grizzly:grizzly-framework:bundle:2.3.3
+    License: CDDL+GPL  (http://glassfish.java.net/public/CDDL+GPL.html)
+  - grizzly-http (http://grizzly.java.net/grizzly-http) org.glassfish.grizzly:grizzly-http:bundle:2.3.3
+    License: CDDL+GPL  (http://glassfish.java.net/public/CDDL+GPL.html)
+  - grizzly-http-server (http://grizzly.java.net/grizzly-http-server) org.glassfish.grizzly:grizzly-http-server:bundle:2.3.3
+    License: CDDL+GPL  (http://glassfish.java.net/public/CDDL+GPL.html)
+  - grizzly-rcm (http://grizzly.java.net/grizzly-rcm) org.glassfish.grizzly:grizzly-rcm:bundle:2.3.3
+    License: CDDL+GPL  (http://glassfish.java.net/public/CDDL+GPL.html)
 
 From: 'QOS.ch' (http://www.qos.ch)
   - SLF4J API Module (http://www.slf4j.org) org.slf4j:slf4j-api:jar:1.7.5

@@ -49,7 +49,7 @@ public class DatabaseHelper {
         Statement statement = null;
 
         String selectTableSQL = "SELECT * from daily_recommendations WHERE datetime >= CURDATE()\n" +
-                "  AND datetime < CURDATE() + INTERVAL 2 DAY";
+                "  AND datetime < CURDATE() + INTERVAL 1 DAY";
 
         try {
             dbConnection = getDBConnection();

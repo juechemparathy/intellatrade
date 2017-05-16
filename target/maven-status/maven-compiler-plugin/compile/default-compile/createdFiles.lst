@@ -44,6 +44,7 @@ storm/kafka/KafkaError.class
 storm/kafka/KeyValueScheme.class
 storm/kafka/project/AutoTradeTopology.class
 storm/kafka/SpoutConfig.class
+storm/kafka/project/spout/KafkaTestSpout$1.class
 storm/kafka/project/util/DatabaseHelper.class
 storm/kafka/project/util/KafkaMessageParser.class
 storm/kafka/trident/TransactionalTridentKafkaSpout.class

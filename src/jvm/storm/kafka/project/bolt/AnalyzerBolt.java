@@ -7,10 +7,13 @@ import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import storm.kafka.project.util.DatabaseHelper;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +22,7 @@ import java.util.Map;
  * Created by jue on 5/7/17.
  */
 public class AnalyzerBolt extends BaseRichBolt {
+    List<String> pairDone = new ArrayList<String>();
     OutputCollector _collector;
 
     @Override
@@ -44,25 +48,36 @@ public class AnalyzerBolt extends BaseRichBolt {
             e.printStackTrace();
         }
 
-        String userPick = "GBP USD";
-//        if (DatabaseHelper.getRecos_buy().get(userPick) != null
-//                && Float.parseFloat(pairInfo) >= Float.parseFloat(DatabaseHelper.getRecos_buy().get(userPick).getPrice())) {
-        if(true) {
+        JSONObject pairJson  = new JSONObject();
+        try {
+            JSONParser parser = new JSONParser();
+            pairJson = (JSONObject) parser.parse(pairInfo);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        String userPick = pairJson.get("pair").toString();
+        String ask = pairJson.get("ask").toString();
+        String bid = pairJson.get("bid").toString();
+        if (DatabaseHelper.getRecos_buy().get(userPick) != null
+                && Float.parseFloat(bid) >= Float.parseFloat(DatabaseHelper.getRecos_buy().get(userPick).getPrice())) {
             // place order
             System.out.println("Place Order");
 //            _collector.emit(tuple, new Values(Float.parseFloat(DatabaseHelper.getRecos_buy().get(userPick).getPrice())));
-            _collector.emit(tuple, new Values("1.4"));
-            _collector.ack(tuple);
+            if(!pairDone.contains(userPick)) {
+                pairDone.add(userPick);
+                _collector.emit(tuple, new Values(pairInfo));
+                _collector.ack(tuple);
+            }
         }
 
-
-        if (DatabaseHelper.getRecos_sell().get(userPick) != null
-                && Float.parseFloat(pairInfo) <= Float.parseFloat(DatabaseHelper.getRecos_sell().get(userPick).getPrice())) {
-            // place order
-            System.out.println("Place Order");
-            _collector.emit(tuple, new Values(Float.parseFloat(DatabaseHelper.getRecos_sell().get(userPick).getPrice())));
-            _collector.ack(tuple);
-        }
+//        if (DatabaseHelper.getRecos_sell().get(userPick) != null
+//                && Float.parseFloat(ask) <= Float.parseFloat(DatabaseHelper.getRecos_sell().get(userPick).getPrice())) {
+//            // place order
+//            System.out.println("Place Order");
+//            _collector.emit(tuple, new Values("userPick"));
+//            _collector.ack(tuple);
+//        }
     }
 
     @Override

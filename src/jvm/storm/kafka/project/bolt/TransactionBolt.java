@@ -10,6 +10,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,17 +31,30 @@ public class TransactionBolt extends BaseRichBolt {
 
     @Override
     public void execute(Tuple tuple) {
-        System.out.println("Intellatrade: TransactionBolt input tuple: " + tuple.getString(0));
+        String pairInfo = tuple.getString(0);
+        System.out.println("Intellatrade: TransactionBolt input tuple: " + pairInfo);
         // Extract userinfo and transaction info
         // execute the transaction Asynchronously
 //      _collector.emit(tuple, new Values(tuple.getString(0)));
-
+        JSONObject pairJson  = new JSONObject();
+        try {
+            JSONParser parser = new JSONParser();
+            pairJson = (JSONObject) parser.parse(pairInfo);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        String userPick = pairJson.get("pair").toString();
+        String ask = pairJson.get("ask").toString();
+        String bid = pairJson.get("bid").toString();
         // Deal Request
 
         // http://ec2-52-53-232-188.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?product=GBP/USD&buysell=B&amount=10000&rate=1.4
-        String url = "http://ec2-54-193-121-31.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?userName=Reshma&product=GBP/USD&buysell=B&amount=10000&rate=1.4";
+        String url = "http://ec2-54-193-121-31.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?userName=Reshma&product=" +
+                userPick +
+                "&buysell=B&amount=10000&" +
+                "rate="+bid;
         try {
-            makeTransaction(url);
+            makeTransaction(url,true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,7 +67,11 @@ public class TransactionBolt extends BaseRichBolt {
     }
 
 
-    private void makeTransaction(String url) throws IOException {
+    private void makeTransaction(String url, boolean isMock) throws IOException {
+        if(isMock) {
+            System.out.println("TransactionDone: "+ url);
+            return;
+        }
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(url);
 
