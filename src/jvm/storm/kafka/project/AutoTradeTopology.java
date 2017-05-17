@@ -57,7 +57,7 @@ public class AutoTradeTopology {
     else { // local
       LocalCluster cluster = new LocalCluster();
       cluster.submitTopology("test", conf, builder.createTopology());
-      Utils.sleep(10000);
+      Utils.sleep(1000000000);
       cluster.killTopology("test");
       cluster.shutdown();
     }

@@ -41,9 +41,9 @@ public class AnalyzerBolt extends BaseRichBolt {
         try {
             Date todayDate = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            if (DatabaseHelper.getCurrentDate() == null || sdf.format(todayDate).equals(sdf.format(DatabaseHelper.getCurrentDate()))) {
+//            if (DatabaseHelper.getCurrentDate() == null || sdf.format(todayDate).equals(sdf.format(DatabaseHelper.getCurrentDate()))) {
                 DatabaseHelper.refresh();
-            }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,15 +59,16 @@ public class AnalyzerBolt extends BaseRichBolt {
         String userPick = pairJson.get("pair").toString();
         String ask = pairJson.get("ask").toString();
         String bid = pairJson.get("bid").toString();
-        if (DatabaseHelper.getRecos_buy().get(userPick) != null
-                && Float.parseFloat(bid) >= Float.parseFloat(DatabaseHelper.getRecos_buy().get(userPick).getPrice())) {
+        if ((userPick.contains("EUR") && userPick.contains("USD") && DatabaseHelper.getRecos_buy().containsKey("EUR/USD"))) {
             // place order
             System.out.println("Place Order");
 //            _collector.emit(tuple, new Values(Float.parseFloat(DatabaseHelper.getRecos_buy().get(userPick).getPrice())));
-            if(!pairDone.contains(userPick)) {
-                pairDone.add(userPick);
-                _collector.emit(tuple, new Values(pairInfo));
-                _collector.ack(tuple);
+            synchronized (this) {
+                if (!pairDone.contains(userPick)) {
+                    pairDone.add(userPick);
+                    _collector.emit(tuple, new Values(pairInfo));
+                    _collector.ack(tuple);
+                }
             }
         }
 

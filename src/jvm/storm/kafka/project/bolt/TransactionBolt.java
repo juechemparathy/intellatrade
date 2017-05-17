@@ -9,6 +9,7 @@ import backtype.storm.tuple.Tuple;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,6 +25,7 @@ import java.util.Map;
 public class TransactionBolt extends BaseRichBolt {
     OutputCollector _collector;
 
+    boolean done= false;
     @Override
     public void prepare(Map conf, TopologyContext context, OutputCollector collector) {
         _collector = collector;
@@ -49,12 +51,16 @@ public class TransactionBolt extends BaseRichBolt {
         // Deal Request
 
         // http://ec2-52-53-232-188.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?product=GBP/USD&buysell=B&amount=10000&rate=1.4
-        String url = "http://ec2-54-193-121-31.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?userName=Reshma&product=" +
-                userPick +
-                "&buysell=B&amount=10000&" +
-                "rate="+bid;
+//        String url = "http://ec2-54-193-121-31.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?userName=Reshma&product=" +
+//                userPick +
+//                "&buySell=B&amount=10000&" +
+//                "rate="+bid;
+        String url = "http://ec2-54-193-121-31.us-west-1.compute.amazonaws.com:8080/gaincapital-rest-tradingservice/dealrequest?userName=Test&product=EUR/USD&buySell=B&amount=1000&rate=1.3";
         try {
-            makeTransaction(url,true);
+            if(!done) {
+                done=true;
+                makeTransaction(url, false);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,7 +79,7 @@ public class TransactionBolt extends BaseRichBolt {
             return;
         }
         HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(url);
+        HttpPost request = new HttpPost(url);
 
 // add request header
         request.addHeader("User-Agent", "Storm Transaction");

@@ -109,9 +109,9 @@ public class DatabaseHelper {
                 statement.close();
             }
 
-            if (dbConnection != null) {
-                dbConnection.close();
-            }
+//            if (dbConnection != null) {
+//                dbConnection.close();
+//            }
 
         }
     }
